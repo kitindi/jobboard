@@ -173,7 +173,7 @@
             <!-- Card -->
             <a
               class="group flex flex-col mb-8 bg-white border rounded-xl transition hover:bg-gray-100 dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              href="/job"
+              href="{{ url_for('job_details' , job_id=job.id) }}"
             >
               <div class="p-4 md:p-5">
                 <div class="flex gap-8">
@@ -211,7 +211,7 @@
         </div>
       </div>
     </section>
-    {% extends 'footer.html' %}
+    {% include 'footer.html' %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   </body>

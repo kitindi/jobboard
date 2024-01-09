@@ -1,8 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app= Flask(__name__)
 
-JOBS = [
+jobs = [
     {"id": 1,
      "title": "Data Analyst",
      "level":"Entry Level",
@@ -34,15 +34,16 @@ JOBS = [
 
 @app.route('/')
 def index():
-    return render_template('home.html', jobs=JOBS)
+    return render_template('home.html', jobs=jobs)
 
-@app.route('/job')
-def job_details():
-    return render_template('job_detail.html')
-    
+@app.route('/job/<int:job_id>')
+def job_details(job_id):
+    for job in jobs:
+        if job["id"] == job_id:
+           return render_template('job_detail.html', job=job)
+    return render_template('job_detail.html', {'message': 'Job not found'})
 
 
-"""
-Auto reloading flask app
-$ --> flask --app app.py --debug run
-"""
+
+if __name__ == '__main__':
+    app.run(debug=True)
